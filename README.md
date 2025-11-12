@@ -46,8 +46,3 @@ python analysis/analyze_vaccine_hesitancy.py
 ```bash
 python analysis/run_all_analyses.py
 ```
-
-This will generate analysis figures for all datasets and save them to the `results/` folder.
-```
-
-

@@ -13,9 +13,10 @@ This directory contains datasets and a Jupyter notebook for conducting explorato
 
 ## Setup
 
-1. Install required packages:
+1. Create and activate the conda environment:
 ```bash
-pip install -r requirements.txt
+conda env create -f environment.yml
+conda activate 4002
 ```
 
 2. Launch Jupyter Notebook:
@@ -24,6 +25,8 @@ jupyter notebook
 ```
 
 3. Open `EDA.ipynb` and run all cells
+
+**Note:** For more detailed information about the analysis, please refer to the `EDA.ipynb` notebook.
 
 ## Notebook Structure
 

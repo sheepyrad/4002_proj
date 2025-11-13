@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import geopandas as gpd
 from pathlib import Path
 from utils import DATA_DIR, RESULTS_DIR, save_figure, ensure_results_dir
 
@@ -129,6 +130,198 @@ def analyze_measles():
     
     return df, cases_col, incidence_col
 
+def create_yearly_geopandas_maps():
+    """Create yearly choropleth maps of measles incidence using GeoPandas"""
+    print("\n" + "="*60)
+    print("CREATING YEARLY GEOPANDAS MAPS - MEASLES INCIDENCE")
+    print("="*60)
+    
+    # Load measles data
+    df = load_data()
+    incidence_col = 'Measles incidence rate per 1\'000\'000  total population'
+    iso_col = 'ISO country code'
+    
+    # Get unique years
+    years = sorted(df['Year'].unique())
+    print(f"\nCreating maps for {len(years)} years: {years[0]} - {years[-1]}")
+    
+    # Load world map data
+    world = None
+    world_iso_col = None
+    
+    # Try multiple methods to load world map with country codes
+    print("Loading world map data...")
+    
+    # Method 1: Try naturalearth_lowres (has ISO codes and country names)
+    try:
+        dataset_path = gpd.datasets.get_path('naturalearth_lowres')
+        print(f"Loading dataset from: {dataset_path}")
+        world = gpd.read_file(dataset_path)
+        print(f"Loaded dataset with {len(world)} features")
+        print(f"Available columns: {world.columns.tolist()}")
+        
+        # Check if this is actually naturalearth.land (which only has geometry)
+        if len(world.columns) <= 4 and 'geometry' in world.columns:
+            print("Warning: Dataset appears to be naturalearth.land (no country data)")
+            print("Trying alternative method...")
+            raise ValueError("Dataset lacks country identifiers")
+        
+        # Check for ISO column (preferred)
+        iso_cols = ['ISO_A3', 'iso_a3', 'ISO3', 'iso3']
+        for col in iso_cols:
+            if col in world.columns:
+                world_iso_col = col
+                print(f"Using ISO column: {world_iso_col}")
+                break
+        
+        # If no ISO column, use country name
+        if world_iso_col is None:
+            name_cols = ['NAME', 'name', 'NAME_EN', 'name_en']
+            for col in name_cols:
+                if col in world.columns:
+                    world_iso_col = col
+                    print(f"Using country name column: {world_iso_col}")
+                    break
+    except Exception as e:
+        print(f"Error loading naturalearth_lowres: {e}")
+        # Method 2: Try downloading from a reliable GeoJSON source
+        try:
+            print("Attempting to download world map from alternative source...")
+            world = gpd.read_file('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
+            print(f"Loaded world map from URL with {len(world)} features")
+            print(f"Available columns: {world.columns.tolist()}")
+            
+            # Check for ISO or name columns
+            iso_cols = ['ISO_A3', 'iso_a3', 'ISO3', 'iso3', 'id', 'ID']
+            name_cols = ['NAME', 'name', 'NAME_EN', 'name_en', 'country', 'Country']
+            
+            for col in iso_cols + name_cols:
+                if col in world.columns:
+                    world_iso_col = col
+                    print(f"Using column: {world_iso_col}")
+                    break
+        except Exception as e2:
+            print(f"Alternative method also failed: {e2}")
+            print("Skipping GeoPandas maps - world map data not available")
+            return
+    
+    if world is None or world_iso_col is None:
+        print("Could not find suitable world map with country identifiers")
+        print("Skipping GeoPandas maps")
+        return
+    
+    # Ensure results directory exists
+    ensure_results_dir()
+    maps_dir = RESULTS_DIR / 'measles_yearly_maps'
+    maps_dir.mkdir(exist_ok=True)
+    
+    # Create maps for each year
+    for year in years:
+        print(f"\nProcessing year {year}...")
+        
+        # Filter data for this year
+        year_data = df[df['Year'] == year].copy()
+        
+        if year_data.empty:
+            print(f"  No data for year {year}, skipping...")
+            continue
+        
+        # Prepare data for merging
+        year_data_clean = year_data[[iso_col, 'Member State', incidence_col]].copy()
+        
+        # If we're using country names, we need to match by country name instead of ISO code
+        if world_iso_col in ['NAME', 'name', 'NAME_EN', 'name_en', 'country', 'Country']:
+            # Match by country name
+            year_data_clean = year_data_clean.rename(columns={'Member State': world_iso_col})
+            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, incidence_col])
+            # Clean country names for better matching
+            year_data_clean[world_iso_col] = year_data_clean[world_iso_col].str.strip()
+            
+            # Create a mapping for common name variations
+            # This helps match country names that might differ slightly
+            name_mapping = {
+                'United States of America': 'United States',
+                'United States': 'United States of America',
+                'Russian Federation': 'Russia',
+                'Russia': 'Russian Federation',
+                'Czech Republic': 'Czechia',
+                'Czechia': 'Czech Republic',
+                'Republic of the Congo': 'Congo',
+                'Democratic Republic of the Congo': 'Congo, Democratic Republic of',
+                'Myanmar': 'Burma',
+                'Burma': 'Myanmar',
+            }
+            
+            # Apply name mapping if needed
+            for old_name, new_name in name_mapping.items():
+                if old_name in year_data_clean[world_iso_col].values:
+                    year_data_clean[world_iso_col] = year_data_clean[world_iso_col].replace(old_name, new_name)
+        else:
+            # Match by ISO code
+            year_data_clean = year_data_clean.rename(columns={iso_col: world_iso_col})
+            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, incidence_col])
+        
+        # Merge with world map
+        world_year = world.merge(
+            year_data_clean,
+            on=world_iso_col,
+            how='left'
+        )
+        
+        # Create figure
+        fig, ax = plt.subplots(1, 1, figsize=(20, 10))
+        
+        # Plot world map with measles incidence
+        world_year.plot(
+            column=incidence_col,
+            ax=ax,
+            legend=True,
+            cmap='YlOrRd',
+            missing_kwds={'color': 'lightgrey', 'label': 'No data'},
+            legend_kwds={
+                'label': f'Measles Incidence Rate (per 1M population)',
+                'orientation': 'horizontal',
+                'shrink': 0.8,
+                'pad': 0.02
+            },
+            edgecolor='black',
+            linewidth=0.3
+        )
+        
+        ax.set_title(
+            f'Measles Incidence Rate by Country - {year}',
+            fontsize=18,
+            fontweight='bold',
+            pad=20
+        )
+        ax.axis('off')
+        
+        # Add text with data info
+        countries_with_data = year_data_clean[world_iso_col].nunique()
+        total_countries = len(world)
+        info_text = f'Countries with data: {countries_with_data}/{total_countries}'
+        ax.text(
+            0.02, 0.02,
+            info_text,
+            transform=ax.transAxes,
+            fontsize=10,
+            bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+        )
+        
+        plt.tight_layout()
+        
+        # Save figure
+        filename = maps_dir / f'measles_incidence_{year}.png'
+        fig.savefig(filename, dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print(f"  Saved map for {year}: {filename}")
+    
+    print(f"\n{'='*60}")
+    print(f"All yearly maps saved to: {maps_dir}")
+    print(f"{'='*60}")
+
 if __name__ == '__main__':
     df, cases_col, incidence_col = analyze_measles()
+    create_yearly_geopandas_maps()
 

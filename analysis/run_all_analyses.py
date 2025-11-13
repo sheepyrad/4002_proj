@@ -87,6 +87,10 @@ try:
     from analyze_vaccine_coverage import analyze_vaccine_coverage
     analyze_vaccine_coverage()
 
+    print("\n11b. Creating yearly GeoPandas maps for measles incidence...")
+    from analyze_measles import create_yearly_geopandas_maps
+    create_yearly_geopandas_maps()
+
     print("\n12. Running Spearman correlation analysis (single year)...")
     from correlation_analysis import main as run_correlation
     run_correlation()
@@ -100,6 +104,7 @@ try:
     print("="*80)
     print("\nAll figures have been saved to the /results folder")
     print("Individual analyses: results/[dataset]_analysis.png")
+    print("Yearly measles maps: results/measles_yearly_maps/measles_incidence_*.png")
     print("Spearman correlation: results/spearman/")
     print("  - Multi-year results: results/spearman/spearman_correlation_multiyear_*.png")
     print("  - Year-specific results: results/spearman/[year]/")

@@ -131,14 +131,15 @@ def analyze_measles():
     return df, cases_col, incidence_col
 
 def create_yearly_geopandas_maps():
-    """Create yearly choropleth maps of measles incidence using GeoPandas"""
+    """Create yearly choropleth maps of measles incidence and total cases using GeoPandas"""
     print("\n" + "="*60)
-    print("CREATING YEARLY GEOPANDAS MAPS - MEASLES INCIDENCE")
+    print("CREATING YEARLY GEOPANDAS MAPS - MEASLES DATA")
     print("="*60)
     
     # Load measles data
     df = load_data()
     incidence_col = 'Measles incidence rate per 1\'000\'000  total population'
+    cases_col = 'Total confirmed  measles cases'
     iso_col = 'ISO country code'
     
     # Get unique years
@@ -215,30 +216,27 @@ def create_yearly_geopandas_maps():
     maps_dir = RESULTS_DIR / 'measles_yearly_maps'
     maps_dir.mkdir(exist_ok=True)
     
-    # Create maps for each year
-    for year in years:
-        print(f"\nProcessing year {year}...")
-        
+    # Helper function to create a map for a given column
+    def create_map_for_column(year, column_name, title, label, filename_suffix, cmap='YlOrRd'):
+        """Helper function to create a choropleth map for a specific column"""
         # Filter data for this year
         year_data = df[df['Year'] == year].copy()
         
         if year_data.empty:
-            print(f"  No data for year {year}, skipping...")
-            continue
+            return False
         
         # Prepare data for merging
-        year_data_clean = year_data[[iso_col, 'Member State', incidence_col]].copy()
+        year_data_clean = year_data[[iso_col, 'Member State', column_name]].copy()
         
         # If we're using country names, we need to match by country name instead of ISO code
         if world_iso_col in ['NAME', 'name', 'NAME_EN', 'name_en', 'country', 'Country']:
             # Match by country name
             year_data_clean = year_data_clean.rename(columns={'Member State': world_iso_col})
-            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, incidence_col])
+            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, column_name])
             # Clean country names for better matching
             year_data_clean[world_iso_col] = year_data_clean[world_iso_col].str.strip()
             
             # Create a mapping for common name variations
-            # This helps match country names that might differ slightly
             name_mapping = {
                 'United States of America': 'United States',
                 'United States': 'United States of America',
@@ -259,7 +257,7 @@ def create_yearly_geopandas_maps():
         else:
             # Match by ISO code
             year_data_clean = year_data_clean.rename(columns={iso_col: world_iso_col})
-            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, incidence_col])
+            year_data_clean = year_data_clean.dropna(subset=[world_iso_col, column_name])
         
         # Merge with world map
         world_year = world.merge(
@@ -271,15 +269,15 @@ def create_yearly_geopandas_maps():
         # Create figure
         fig, ax = plt.subplots(1, 1, figsize=(20, 10))
         
-        # Plot world map with measles incidence
+        # Plot world map
         world_year.plot(
-            column=incidence_col,
+            column=column_name,
             ax=ax,
             legend=True,
-            cmap='YlOrRd',
+            cmap=cmap,
             missing_kwds={'color': 'lightgrey', 'label': 'No data'},
             legend_kwds={
-                'label': f'Measles Incidence Rate (per 1M population)',
+                'label': label,
                 'orientation': 'horizontal',
                 'shrink': 0.8,
                 'pad': 0.02
@@ -289,7 +287,7 @@ def create_yearly_geopandas_maps():
         )
         
         ax.set_title(
-            f'Measles Incidence Rate by Country - {year}',
+            title,
             fontsize=18,
             fontweight='bold',
             pad=20
@@ -311,14 +309,41 @@ def create_yearly_geopandas_maps():
         plt.tight_layout()
         
         # Save figure
-        filename = maps_dir / f'measles_incidence_{year}.png'
+        filename = maps_dir / f'measles_{filename_suffix}_{year}.png'
         fig.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"  Saved map for {year}: {filename}")
+        print(f"  Saved {filename_suffix} map for {year}: {filename}")
+        return True
+    
+    # Create maps for each year - both incidence rate and total cases
+    for year in years:
+        print(f"\nProcessing year {year}...")
+        
+        # Create incidence rate map
+        create_map_for_column(
+            year=year,
+            column_name=incidence_col,
+            title=f'Measles Incidence Rate by Country - {year}',
+            label='Measles Incidence Rate (per 1M population)',
+            filename_suffix='incidence',
+            cmap='YlOrRd'
+        )
+        
+        # Create total cases map
+        create_map_for_column(
+            year=year,
+            column_name=cases_col,
+            title=f'Total Confirmed Measles Cases by Country - {year}',
+            label='Total Confirmed Cases',
+            filename_suffix='cases',
+            cmap='Reds'
+        )
     
     print(f"\n{'='*60}")
     print(f"All yearly maps saved to: {maps_dir}")
+    print(f"  - Incidence rate maps: measles_incidence_*.png")
+    print(f"  - Total cases maps: measles_cases_*.png")
     print(f"{'='*60}")
 
 if __name__ == '__main__':

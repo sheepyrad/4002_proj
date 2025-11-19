@@ -1,0 +1,11 @@
+Year,Rank_1_Factor,Rank_1_Coefficient,Rank_2_Factor,Rank_2_Coefficient,Rank_3_Factor,Rank_3_Coefficient
+2015,Share that disagrees vaccines are effective,-15.141642566952374,Net Migration,12.245759128011164,Birth Rate,5.0220041608224575
+2016,Share that disagrees vaccines are effective,-1.8177144544740522,Net Migration,1.0262040538789634,Public health expenditure as a share of GDP,0.9547043473214761
+2017,Population Density,-1.3443794578989208,Net Migration,1.2224424216382532,Public health expenditure as a share of GDP,0.3812260672723012
+2018,Population Density,3.59065473177884,Net Migration,-3.5511770780441023,Public health expenditure as a share of GDP,-1.1965379618360397
+2019,Share that disagrees vaccines are effective,-0.8041537699405896,Net Migration,0.7789947322047187,Public health expenditure as a share of GDP,0.3540216638838034
+2020,Net Migration,0.3870488981255245,Population Density,-0.37118244821252977,Public health expenditure as a share of GDP,0.0938881037946468
+2021,Population Density,-0.18800627541275203,Net Migration,0.1415290059401396,"GDP per capita, PPP (constant 2021 international $)",-0.050161533167688566
+2022,Net Migration,6.982056632087811,Share that disagrees vaccines are effective,4.168617340775939,Birth Rate,1.7309955718227297
+2023,Public health expenditure as a share of GDP,0.6552614733121302,Share that disagrees vaccines are effective,-0.6016298605019529,Net Migration,0.45628822726441004
+2024,Share that disagrees vaccines are effective,-0.6368360848531378,Public health expenditure as a share of GDP,0.41720248639654184,Urban population (% of total population),-0.2595464584940521

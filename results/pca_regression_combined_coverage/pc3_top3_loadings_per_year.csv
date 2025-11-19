@@ -1,0 +1,11 @@
+Year,Rank_1_Factor,Rank_1_Loading,Rank_2_Factor,Rank_2_Loading,Rank_3_Factor,Rank_3_Loading
+2015,Population Density,0.841892396657909,Share that disagrees vaccines are effective,-0.3718295018911796,Net Migration,-0.272880899102202
+2016,Population Density,0.8204682989723254,Net Migration,-0.3584271410728073,Share that disagrees vaccines are effective,-0.35548243731887696
+2017,Population Density,0.6116559301395263,Net Migration,0.5974379541313672,Birth Rate,0.3427531400381261
+2018,Population Density,0.6514680120403687,Net Migration,0.5750312768297363,Average household size (number of members),0.31051826433661317
+2019,Population Density,0.7907433155236211,Share that disagrees vaccines are effective,-0.47662790821999457,Net Migration,-0.27400879534253736
+2020,Population Density,0.6341187160303317,Net Migration,0.5684827707145279,Birth Rate,0.27160808531255426
+2021,Net Migration,0.6303889672628742,Population Density,0.43722902707870565,Birth Rate,0.4003480951711475
+2022,Population Density,0.9385095681622571,Average household size (number of members),0.2101722752331318,"GDP per capita, PPP (constant 2021 international $)",0.17841184891111886
+2023,Population Density,0.8256209306610741,Net Migration,-0.4841162165646821,"GDP per capita, PPP (constant 2021 international $)",0.18172623343351096
+2024,Net Migration,0.9161725868892118,Share that disagrees vaccines are effective,0.2686031846202724,"GDP per capita, PPP (constant 2021 international $)",-0.2478877340022332

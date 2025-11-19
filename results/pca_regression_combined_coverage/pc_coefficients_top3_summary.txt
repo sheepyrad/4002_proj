@@ -1,0 +1,33 @@
+PCA COEFFICIENTS ANALYSIS SUMMARY
+============================================================
+
+Top 3 Factors by Principal Component (based on frequency in top 3 coefficients across all years):
+
+PC1:
+------------------------------------------------------------
+  1. GDP per capita, PPP (constant 2021 international $) - appeared in top 3 for 10 year(s)
+  2. Birth Rate - appeared in top 3 for 9 year(s)
+  3. Average household size (number of members) - appeared in top 3 for 9 year(s)
+
+PC2:
+------------------------------------------------------------
+  1. Net Migration - appeared in top 3 for 9 year(s)
+  2. Public health expenditure as a share of GDP - appeared in top 3 for 7 year(s)
+  3. Share that disagrees vaccines are effective - appeared in top 3 for 6 year(s)
+
+PC3:
+------------------------------------------------------------
+  1. Population Density - appeared in top 3 for 9 year(s)
+  2. Net Migration - appeared in top 3 for 9 year(s)
+  3. Share that disagrees vaccines are effective - appeared in top 3 for 4 year(s)
+
+Note: Mapped coefficients = PC_regression_coefficient × PC_loading
+This represents the contribution of each original factor to measles incidence through the PC.
+Top 3 factors are identified by absolute mapped coefficient value for each year, then counted across all years.
+
+Files generated:
+- pc_coefficients_top3_frequency.png: Frequency bar charts for each PC
+- pc_coefficients_top3_combined.png: Combined summary showing top 3 factors for all PCs
+- pc1_top3_coefficients_per_year.csv: Detailed top 3 factors for PC1 each year
+- pc2_top3_coefficients_per_year.csv: Detailed top 3 factors for PC2 each year
+- pc3_top3_coefficients_per_year.csv: Detailed top 3 factors for PC3 each year

@@ -1,0 +1,17 @@
+
+PC1 MAPPED COEFFICIENT ANALYSIS SUMMARY
+=======================================
+
+Top 3 Actionable Targets (by frequency in top 3 across all years):
+1. GDP per capita, PPP (constant 2021 international $) - appeared in top 3 for 10 year(s)
+2. Birth Rate - appeared in top 3 for 9 year(s)
+3. Average household size (number of members) - appeared in top 3 for 9 year(s)
+
+Note: Mapped coefficient = PC1_regression_coefficient × PC1_loading
+This represents the contribution of each original factor to measles incidence through PC1.
+
+Files generated:
+- pc1_mapped_coefficients_trends.png: Trend plots of all factors and top 3 targets
+- pc1_mapped_coefficients_trends.csv: Full data of mapped coefficients over time
+- pc1_top3_frequency.png: Bar chart of frequency counts
+- pc1_top3_per_year.csv: Detailed top 3 factors for each year

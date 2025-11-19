@@ -19,9 +19,10 @@ if __name__ == '__main__':
     results_df = analyze_pca_multiple_years(
         data_dict,
         incidence_col,
-        start_year=2010,
+        start_year=2015,
         end_year=2024,
-        n_components=3
+        n_components=3,
+        use_both_coverage=True  # Include both 1st and 2nd coverage in formula
     )
 
     results_path = Path(__file__).parent / "results" / "pca_regression_multiyear.csv"

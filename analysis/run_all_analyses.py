@@ -99,6 +99,23 @@ try:
     from correlation_analysis import analyze_multiple_years
     analyze_multiple_years()
 
+    print("\n14. Running Multi-year PCA regression analysis (2015-2024)...")
+    from correlation_analysis import load_all_data
+    from pca_regression import analyze_pca_multiple_years
+    data_dict = load_all_data()
+    _, _, incidence_col = data_dict['measles']
+    results_df = analyze_pca_multiple_years(
+        data_dict,
+        incidence_col,
+        start_year=2015,
+        end_year=2024,
+        n_components=3
+    )
+    results_path = Path(__file__).parent / "results" / "pca_regression_multiyear.csv"
+    results_path.parent.mkdir(exist_ok=True)
+    results_df.to_csv(results_path, index=False)
+    print(f"  Summary results saved to {results_path}")
+
     print("\n" + "="*80)
     print("ALL ANALYSES COMPLETED!")
     print("="*80)
@@ -110,6 +127,10 @@ try:
     print("Spearman correlation: results/spearman/")
     print("  - Multi-year results: results/spearman/spearman_correlation_multiyear_*.png")
     print("  - Year-specific results: results/spearman/[year]/")
+    print("PCA regression: results/yearly_reports/")
+    print("  - Regression reports: pca_regression_*.txt")
+    print("  - PCA loadings: pca_loadings_*.csv")
+    print("  - Summary: results/pca_regression_multiyear.csv")
 
 except Exception as e:
     print(f"\nERROR: Analysis failed with error: {e}", file=sys.stderr)

@@ -1,0 +1,29 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:          __incidence__   R-squared:                       0.164
+Model:                            OLS   Adj. R-squared:                  0.139
+Method:                 Least Squares   F-statistic:                     6.663
+Date:                Thu, 04 Dec 2025   Prob (F-statistic):           1.08e-05
+Time:                        17:11:15   Log-Likelihood:                -960.76
+No. Observations:                 176   AIC:                             1934.
+Df Residuals:                     170   BIC:                             1953.
+Df Model:                           5                                         
+Covariance Type:            nonrobust                                         
+=================================================================================================
+                                    coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------
+Intercept                       108.0543     30.505      3.542      0.001      47.836     168.272
+vaccine_coverage_1st_COVERAGE    -1.8483      0.455     -4.058      0.000      -2.747      -0.949
+vaccine_coverage_2nd_COVERAGE     0.8667      0.354      2.449      0.015       0.168       1.565
+PC1                              -5.6566      2.506     -2.258      0.025     -10.602      -0.711
+PC2                              -0.9242      3.984     -0.232      0.817      -8.788       6.940
+PC3                               3.6823      4.851      0.759      0.449      -5.893      13.258
+==============================================================================
+Omnibus:                      259.421   Durbin-Watson:                   1.836
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            25560.380
+Skew:                           6.365   Prob(JB):                         0.00
+Kurtosis:                      60.650   Cond. No.                         822.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

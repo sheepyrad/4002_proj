@@ -113,3 +113,5 @@ dependencies:
   - zstd=1.5.7
   - pip:
       - country-converter==1.3.2
+      - dowhy>=0.11
+      - networkx>=3.0

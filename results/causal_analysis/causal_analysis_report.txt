@@ -1,0 +1,161 @@
+======================================================================
+CAUSAL ANALYSIS REPORT: VACCINE COVERAGE AND MEASLES INCIDENCE
+Using DoWhy Framework
+======================================================================
+
+
+==================================================
+MCV1 ANALYSIS
+==================================================
+
+Treatment: MCV1
+Outcome: LogIncidence
+Observations: 2165
+Countries: 189
+
+ESTIMATES:
+----------------------------------------
+  linear_regression: -0.0230
+  propensity_stratification: -0.3828
+  propensity_matching: -0.3144
+
+PRIMARY ESTIMATE: -0.0230
+
+INTERPRETATION:
+A 1 percentage point increase in MCV1 coverage decreases measles incidence by approximately 2.28%.
+A 10 percentage point increase in coverage would decreases incidence by approximately 20.6%.
+
+ROBUSTNESS CHECKS:
+----------------------------------------
+  random_common_cause: -0.0230
+  placebo_treatment: -0.0004
+  data_subset: -0.0228
+
+==================================================
+MCV2 ANALYSIS
+==================================================
+
+Treatment: MCV2
+Outcome: LogIncidence
+Observations: 2165
+Countries: 189
+
+ESTIMATES:
+----------------------------------------
+  linear_regression: -0.0022
+
+PRIMARY ESTIMATE: -0.0022
+
+INTERPRETATION:
+A 1 percentage point increase in MCV2 coverage decreases measles incidence by approximately 0.22%.
+A 10 percentage point increase in coverage would decreases incidence by approximately 2.2%.
+
+ROBUSTNESS CHECKS:
+----------------------------------------
+  random_common_cause: -0.0022
+  placebo_treatment: -0.0002
+
+
+==================================================
+VACCINE HESITANCY AS TREATMENT
+==================================================
+
+Treatment: VaccineHesitancy
+Outcome: LogIncidence
+Observations: 2165
+Countries: 189
+
+ESTIMATES:
+----------------------------------------
+  linear_regression: 0.0018
+
+PRIMARY ESTIMATE: 0.0018
+
+INTERPRETATION:
+A 1 percentage point increase in vaccine hesitancy increases measles incidence by approximately 0.18%.
+POLICY IMPLICATION: Reducing hesitancy by 10 percentage points would decrease incidence by approximately 1.8%.
+
+ROBUSTNESS CHECKS:
+----------------------------------------
+  random_common_cause: 0.0018
+  placebo_treatment: -0.0003
+
+
+==================================================
+MEDIATION ANALYSIS
+Hesitancy → Coverage (MCV1 & MCV2) → Incidence
+==================================================
+
+Total Effect (Hesitancy → Incidence): -0.0030
+Direct Effect (controlling for MCV1 & MCV2): -0.0082
+Indirect Effect (via coverage): 0.0053
+
+Effect of Hesitancy on Coverage:
+  Hesitancy → MCV1: -0.2321
+  Hesitancy → MCV2 (total): -0.0897
+  Hesitancy → MCV2 (direct, controlling for MCV1): 0.1347
+
+Proportion Mediated: 177.2%
+
+INTERPRETATION:
+Hesitancy reduces MCV1 uptake by 0.23% per 1% hesitancy.
+Hesitant people who DO get 1st dose are MORE likely to complete 2nd.
+(Selection effect: those who overcome hesitancy for 1st dose are committed)
+
+
+==================================================
+STRATIFIED ANALYSIS BY INCOME GROUP
+==================================================
+
+
+MCV1:
+----------------------------------------
+  High Income: -0.0471 (63 countries)
+  Upper Middle Income: -0.0073 (52 countries)
+  Lower Middle Income: -0.0155 (49 countries)
+  Low Income: -0.0317 (25 countries)
+  Low & Middle Income (Combined): -0.0197 (126 countries)
+
+MCV2:
+----------------------------------------
+  High Income: -0.0104 (63 countries)
+  Upper Middle Income: 0.0103 (52 countries)
+  Lower Middle Income: -0.0025 (49 countries)
+  Low Income: -0.0106 (25 countries)
+  Low & Middle Income (Combined): 0.0013 (126 countries)
+
+
+======================================================================
+METHODOLOGY NOTES
+======================================================================
+
+
+This analysis uses the DoWhy causal inference framework to estimate the
+causal effect of vaccine coverage and vaccine hesitancy on measles incidence.
+
+CONFOUNDERS CONTROLLED FOR:
+- LogGDPpc (GDP per capita, log-transformed)
+- LogHealthExpPC (Health expenditure per capita, log-transformed)
+- PolStability (Political stability index)
+- HIC (High-income country indicator)
+- UrbanPop (Urban population percentage)
+- HouseholdSize (Average household size)
+- VaccineHesitancy (% disagreeing vaccines are effective)
+- NetMigration (Net migration)
+
+KEY ASSUMPTIONS:
+1. The causal DAG correctly represents the data generating process
+2. No unmeasured confounders (conditional ignorability)
+3. Positivity (all covariate strata have treated and untreated units)
+4. SUTVA (no interference between units)
+
+ROBUSTNESS CHECKS:
+- Random Common Cause: Adds a random confounder to test sensitivity
+- Placebo Treatment: Permutes treatment to test if effect disappears
+- Data Subset: Re-estimates on 80% of data to test stability
+
+LIMITATIONS:
+- Panel data may have temporal dependencies not fully captured
+- Country-level aggregation may mask within-country heterogeneity
+- Causal graph assumptions may not perfectly reflect reality
+- Vaccine hesitancy data was heavily imputed (85% missing)

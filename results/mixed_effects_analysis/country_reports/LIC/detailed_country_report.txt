@@ -1,0 +1,245 @@
+================================================================================
+DETAILED PER-COUNTRY INTERVENTION ANALYSIS
+Focus: Low-Income Countries (LICs)
+================================================================================
+
+
+================================================================================
+INTERVENTION: HEALTHEXP 1PCT
+================================================================================
+
+Summary Statistics:
+  Countries analyzed: 24
+  Mean change: -24.70
+  Median change: -6.80
+  Std deviation: 36.90
+  Min change: -143.34
+  Max change: 0.00
+  Countries with reduction: 23
+  Countries with increase: 0
+  Countries with no change: 1
+
+Countries with Largest Reduction (Top 20):
+--------------------------------------------------------------------------------
+Code   Country                        Income Group             Change   % Change
+--------------------------------------------------------------------------------
+YEM    Yemen                          Low income              -143.34    -24.25%
+LBR    Liberia                        Low income               -97.06    -24.27%
+BFA    Burkina Faso                   Low income               -75.18    -24.29%
+SSD    South Sudan                    Low income               -62.59    -24.30%
+AFG    Afghanistan                    Low income               -55.69    -24.31%
+BDI    Burundi                        Low income               -45.32    -24.34%
+SOM    Somalia                        Low income               -19.55    -24.51%
+NER    Niger                          Low income               -15.40    -24.59%
+TCD    Chad                           Low income               -14.05    -24.63%
+COD    Democratic Republic of the Co  Low income               -11.51    -24.73%
+TGO    Togo                           Low income               -10.22    -24.79%
+SDN    Sudan                          Low income                -7.21    -25.05%
+GNB    Guinea-Bissau                  Low income                -6.40    -25.16%
+CAF    Central African Republic       Low income                -5.60    -25.30%
+UGA    Uganda                         Low income                -5.42    -25.34%
+MOZ    Mozambique                     Low income                -5.18    -25.39%
+MLI    Mali                           Low income                -3.90    -25.81%
+MWI    Malawi                         Low income                -2.25    -27.12%
+GMB    Gambia                         Low income                -1.91    -27.73%
+SYR    Syrian Arab Republic           Low income                -1.56    -28.66%
+
+
+================================================================================
+INTERVENTION: MCV1 95
+================================================================================
+
+Summary Statistics:
+  Countries analyzed: 24
+  Mean change: -20.32
+  Median change: -6.40
+  Std deviation: 44.35
+  Min change: -213.89
+  Max change: 0.06
+  Countries with reduction: 22
+  Countries with increase: 2
+  Countries with no change: 0
+
+Countries with Largest Reduction (Top 20):
+--------------------------------------------------------------------------------
+Code   Country                        Income Group             Change   % Change
+--------------------------------------------------------------------------------
+YEM    Yemen                          Low income              -213.89    -36.18%
+AFG    Afghanistan                    Low income               -65.00    -28.37%
+SSD    South Sudan                    Low income               -44.93    -17.45%
+LBR    Liberia                        Low income               -41.01    -10.25%
+SOM    Somalia                        Low income               -18.32    -22.97%
+BFA    Burkina Faso                   Low income               -17.53     -5.66%
+BDI    Burundi                        Low income               -13.48     -7.24%
+COD    Democratic Republic of the Co  Low income               -13.43    -28.86%
+TCD    Chad                           Low income               -12.42    -21.77%
+SDN    Sudan                          Low income                -9.95    -34.58%
+CAF    Central African Republic       Low income                -8.36    -37.75%
+NER    Niger                          Low income                -6.98    -11.15%
+GNB    Guinea-Bissau                  Low income                -5.83    -22.91%
+MOZ    Mozambique                     Low income                -4.71    -23.12%
+TGO    Togo                           Low income                -4.63    -11.24%
+MLI    Mali                           Low income                -2.80    -18.53%
+MDG    Madagascar                     Low income                -1.46    -43.30%
+UGA    Uganda                         Low income                -0.91     -4.25%
+GMB    Gambia                         Low income                -0.75    -10.86%
+SYR    Syrian Arab Republic           Low income                -0.71    -12.99%
+
+
+================================================================================
+INTERVENTION: MCV1 INCREASE
+================================================================================
+
+Summary Statistics:
+  Countries analyzed: 24
+  Mean change: -8.13
+  Median change: -2.24
+  Std deviation: 12.14
+  Min change: -47.16
+  Max change: 0.00
+  Countries with reduction: 23
+  Countries with increase: 0
+  Countries with no change: 1
+
+Countries with Largest Reduction (Top 20):
+--------------------------------------------------------------------------------
+Code   Country                        Income Group             Change   % Change
+--------------------------------------------------------------------------------
+YEM    Yemen                          Low income               -47.16     -7.98%
+LBR    Liberia                        Low income               -31.94     -7.98%
+BFA    Burkina Faso                   Low income               -24.74     -7.99%
+SSD    South Sudan                    Low income               -20.59     -8.00%
+AFG    Afghanistan                    Low income               -18.32     -8.00%
+BDI    Burundi                        Low income               -14.91     -8.01%
+SOM    Somalia                        Low income                -6.43     -8.06%
+NER    Niger                          Low income                -5.07     -8.09%
+TCD    Chad                           Low income                -4.62     -8.10%
+COD    Democratic Republic of the Co  Low income                -3.79     -8.14%
+TGO    Togo                           Low income                -3.36     -8.16%
+SDN    Sudan                          Low income                -2.37     -8.24%
+GNB    Guinea-Bissau                  Low income                -2.11     -8.28%
+CAF    Central African Republic       Low income                -1.84     -8.32%
+UGA    Uganda                         Low income                -1.78     -8.34%
+MOZ    Mozambique                     Low income                -1.70     -8.36%
+MLI    Mali                           Low income                -1.28     -8.49%
+MWI    Malawi                         Low income                -0.74     -8.92%
+GMB    Gambia                         Low income                -0.63     -9.12%
+SYR    Syrian Arab Republic           Low income                -0.51     -9.43%
+
+
+================================================================================
+INTERVENTION: MCV2 95
+================================================================================
+
+Summary Statistics:
+  Countries analyzed: 24
+  Mean change: 43.98
+  Median change: 12.10
+  Std deviation: 84.58
+  Min change: 0.00
+  Max change: 388.30
+  Countries with reduction: 0
+  Countries with increase: 23
+  Countries with no change: 1
+
+Countries with Largest Reduction (Top 20):
+--------------------------------------------------------------------------------
+Code   Country                        Income Group             Change   % Change
+--------------------------------------------------------------------------------
+PRK    Democratic People's Republic   Low income                 0.00      0.00%
+RWA    Rwanda                         Low income                 0.07      2.49%
+GMB    Gambia                         Low income                 0.92     13.32%
+SYR    Syrian Arab Republic           Low income                 1.29     23.83%
+SLE    Sierra Leone                   Low income                 1.41     26.55%
+MDG    Madagascar                     Low income                 2.48     73.49%
+MWI    Malawi                         Low income                 2.51     30.16%
+CAF    Central African Republic       Low income                 2.81     12.69%
+MLI    Mali                           Low income                 6.10     40.34%
+TGO    Togo                           Low income                11.36     27.57%
+NER    Niger                          Low income                11.42     18.23%
+UGA    Uganda                         Low income                11.45     53.46%
+MOZ    Mozambique                     Low income                12.75     62.54%
+GNB    Guinea-Bissau                  Low income                15.38     60.44%
+SDN    Sudan                          Low income                21.37     74.26%
+COD    Democratic Republic of the Co  Low income                23.62     50.76%
+BDI    Burundi                        Low income                27.60     14.82%
+SSD    South Sudan                    Low income                31.40     12.19%
+TCD    Chad                           Low income                32.92     57.71%
+SOM    Somalia                        Low income                63.13     79.16%
+
+
+================================================================================
+INTERVENTION: POLSTABILITY 1SD
+================================================================================
+
+Summary Statistics:
+  Countries analyzed: 24
+  Mean change: -0.70
+  Median change: -0.19
+  Std deviation: 1.05
+  Min change: -4.08
+  Max change: 0.00
+  Countries with reduction: 23
+  Countries with increase: 0
+  Countries with no change: 1
+
+Countries with Largest Reduction (Top 20):
+--------------------------------------------------------------------------------
+Code   Country                        Income Group             Change   % Change
+--------------------------------------------------------------------------------
+YEM    Yemen                          Low income                -4.08     -0.69%
+LBR    Liberia                        Low income                -2.77     -0.69%
+BFA    Burkina Faso                   Low income                -2.14     -0.69%
+SSD    South Sudan                    Low income                -1.78     -0.69%
+AFG    Afghanistan                    Low income                -1.59     -0.69%
+BDI    Burundi                        Low income                -1.29     -0.69%
+SOM    Somalia                        Low income                -0.56     -0.70%
+NER    Niger                          Low income                -0.44     -0.70%
+TCD    Chad                           Low income                -0.40     -0.70%
+COD    Democratic Republic of the Co  Low income                -0.33     -0.70%
+TGO    Togo                           Low income                -0.29     -0.71%
+SDN    Sudan                          Low income                -0.21     -0.71%
+GNB    Guinea-Bissau                  Low income                -0.18     -0.72%
+CAF    Central African Republic       Low income                -0.16     -0.72%
+UGA    Uganda                         Low income                -0.15     -0.72%
+MOZ    Mozambique                     Low income                -0.15     -0.72%
+MLI    Mali                           Low income                -0.11     -0.74%
+MWI    Malawi                         Low income                -0.06     -0.77%
+GMB    Gambia                         Low income                -0.05     -0.79%
+SYR    Syrian Arab Republic           Low income                -0.04     -0.82%
+
+
+================================================================================
+POLICY RECOMMENDATIONS BY COUNTRY
+================================================================================
+
+Code   Country                        Best Intervention         Expected Reduction
+--------------------------------------------------------------------------------
+YEM    Yemen                          MCV1 95                           -213.89
+LBR    Liberia                        HealthExp 1pct                     -97.06
+BFA    Burkina Faso                   HealthExp 1pct                     -75.18
+AFG    Afghanistan                    MCV1 95                            -65.00
+SSD    South Sudan                    HealthExp 1pct                     -62.59
+BDI    Burundi                        HealthExp 1pct                     -45.32
+SOM    Somalia                        HealthExp 1pct                     -19.55
+NER    Niger                          HealthExp 1pct                     -15.40
+TCD    Chad                           HealthExp 1pct                     -14.05
+COD    Democratic Republic of the Co  MCV1 95                            -13.43
+TGO    Togo                           HealthExp 1pct                     -10.22
+SDN    Sudan                          MCV1 95                             -9.95
+CAF    Central African Republic       MCV1 95                             -8.36
+GNB    Guinea-Bissau                  HealthExp 1pct                      -6.40
+UGA    Uganda                         HealthExp 1pct                      -5.42
+MOZ    Mozambique                     HealthExp 1pct                      -5.18
+MLI    Mali                           HealthExp 1pct                      -3.90
+MWI    Malawi                         HealthExp 1pct                      -2.25
+GMB    Gambia                         HealthExp 1pct                      -1.91
+SYR    Syrian Arab Republic           HealthExp 1pct                      -1.56
+SLE    Sierra Leone                   HealthExp 1pct                      -1.53
+MDG    Madagascar                     MCV1 95                             -1.46
+RWA    Rwanda                         HealthExp 1pct                      -0.94
+PRK    Democratic People's Republic   HealthExp 1pct                       0.00
+
+================================================================================
+END OF REPORT
+================================================================================

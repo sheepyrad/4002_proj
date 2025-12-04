@@ -1,0 +1,104 @@
+======================================================================
+POLICY RECOMMENDATIONS REPORT
+Mixed-Effects Analysis of Measles Incidence
+======================================================================
+
+MODEL SUMMARY
+----------------------------------------------------------------------
+           Mixed Linear Model Regression Results
+===========================================================
+Model:             MixedLM Dependent Variable: LogIncidence
+No. Observations:  2394    Method:             ML          
+No. Groups:        193     Scale:              1.6766      
+Min. group size:   2       Log-Likelihood:     -4287.8206  
+Max. group size:   14      Converged:          No          
+Mean group size:   12.4                                    
+-----------------------------------------------------------
+                 Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+-----------------------------------------------------------
+Intercept         1.567    0.644  2.434 0.015  0.305  2.830
+MCV1             -0.008    0.005 -1.510 0.131 -0.019  0.002
+MCV2              0.009    0.003  2.667 0.008  0.002  0.016
+GDPpc             0.000    0.000  2.957 0.003  0.000  0.000
+HealthExpGDP     -0.277    0.065 -4.282 0.000 -0.404 -0.150
+BirthRate         0.081    0.011  7.582 0.000  0.060  0.101
+PopDensity        0.000    0.000  1.629 0.103 -0.000  0.000
+NetMigration      0.000    0.000  0.093 0.926 -0.000  0.000
+PolStability     -0.007    0.003 -2.053 0.040 -0.014 -0.000
+HIC               0.005    0.365  0.014 0.989 -0.710  0.720
+Group Var         1.775    0.793                           
+Group x MCV1 Cov -0.034    0.011                           
+MCV1 Var          0.001    0.000                           
+===========================================================
+
+
+KEY FINDINGS
+----------------------------------------------------------------------
+MCV1 Coverage Effect: -0.0083
+  Interpretation: A 1 percentage point increase in MCV1 coverage
+  is associated with a -0.0083 change in log(incidence).
+
+MCV2 Coverage Effect: 0.0092
+  Interpretation: A 1 percentage point increase in MCV2 coverage
+  is associated with a 0.0092 change in log(incidence).
+
+INTERVENTION SCENARIOS
+----------------------------------------------------------------------
+
+Mcv1 95:
+  Countries affected: 125
+  Mean reduction: -9.77 cases per 1M population
+  Mean percent reduction: 2156557844.64%
+  Total cases prevented: -1221
+
+Mcv2 95:
+  Countries affected: 125
+  Mean reduction: 17.60 cases per 1M population
+  Mean percent reduction: 53107601948.86%
+  Total cases prevented: 2200
+
+Healthexp 1Pct:
+  Countries affected: 125
+  Mean reduction: -21.86 cases per 1M population
+  Mean percent reduction: -24.91%
+  Total cases prevented: -2732
+
+Polstability 1Sd:
+  Countries affected: 125
+  Mean reduction: -0.62 cases per 1M population
+  Mean percent reduction: -1.17%
+  Total cases prevented: -78
+
+Mcv1 Increase:
+  Countries affected: 125
+  Mean reduction: -7.19 cases per 1M population
+  Mean percent reduction: -10.17%
+  Total cases prevented: -899
+
+
+POLICY RECOMMENDATIONS
+----------------------------------------------------------------------
+
+1. PRIORITY INTERVENTION: Mcv2 95
+   This intervention shows the largest mean reduction in measles incidence.
+
+2. RECOMMENDED ACTIONS:
+   - Increase MCV1 coverage to 95% in low and middle-income countries
+   - Increase MCV2 coverage to 95% in low and middle-income countries
+   - Increase health expenditure by at least 1% of GDP
+   - Improve political stability through governance reforms
+
+3. TARGET COUNTRIES:
+   Focus interventions on low and middle-income countries (LMICs)
+   where baseline coverage is below 95%.
+
+4. UNCERTAINTY AND LIMITATIONS:
+   - Model predictions include uncertainty intervals
+   - Results are based on historical data and may not capture
+     all factors affecting measles incidence
+   - Policy implementation should consider local context
+     and feasibility constraints
+
+======================================================================
+END OF REPORT
+======================================================================

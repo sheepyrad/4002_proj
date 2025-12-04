@@ -1,0 +1,13 @@
+Treatment,Method,Estimate,N_Observations,N_Countries
+MCV1,linear_regression,-0.023016639658073768,2165,189
+MCV1,propensity_stratification,-0.3828170792323482,2165,189
+MCV1,propensity_matching,-0.31439762853145775,2165,189
+MCV1,refutation_random_common_cause,-0.023014191595595333,2165,189
+MCV1,refutation_placebo_treatment,-0.0003900518089579896,2165,189
+MCV1,refutation_data_subset,-0.022838187481096936,2165,189
+MCV2,linear_regression,-0.0022194310243193183,2165,189
+MCV2,refutation_random_common_cause,-0.0022173467842957996,2165,189
+MCV2,refutation_placebo_treatment,-0.00021145361248450233,2165,189
+VaccineHesitancy,linear_regression,0.0018133101443102984,2165,189
+VaccineHesitancy,refutation_random_common_cause,0.0018180758947567055,2165,189
+VaccineHesitancy,refutation_placebo_treatment,-0.00032113263112309553,2165,189

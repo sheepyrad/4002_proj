@@ -1,0 +1,195 @@
+Code,Country,Cluster,ClusterLabel,HIC
+AFG,Afghanistan,0,Cluster 1,0
+AGO,Angola,2,Cluster 3,0
+ALB,Albania,0,Cluster 1,0
+AND,Andorra,1,Cluster 2,1
+ARE,United Arab Emirates,0,Cluster 1,1
+ARG,Argentina,1,Cluster 2,0
+ARM,Armenia,0,Cluster 1,0
+ATG,Antigua and Barbuda,0,Cluster 1,1
+AUS,Australia,0,Cluster 1,1
+AUT,Austria,0,Cluster 1,1
+AZE,Azerbaijan,1,Cluster 2,0
+BDI,Burundi,1,Cluster 2,0
+BEL,Belgium,0,Cluster 1,1
+BEN,Benin,0,Cluster 1,0
+BFA,Burkina Faso,0,Cluster 1,0
+BGD,Bangladesh,0,Cluster 1,0
+BGR,Bulgaria,0,Cluster 1,1
+BHR,Bahrain,1,Cluster 2,1
+BHS,Bahamas,1,Cluster 2,1
+BIH,Bosnia and Herzegovina,2,Cluster 3,0
+BLR,Belarus,0,Cluster 1,0
+BLZ,Belize,1,Cluster 2,0
+BOL,Bolivia (Plurinational State of),1,Cluster 2,0
+BRA,Brazil,1,Cluster 2,0
+BRB,Barbados,1,Cluster 2,1
+BRN,Brunei Darussalam,1,Cluster 2,1
+BTN,Bhutan,0,Cluster 1,0
+BWA,Botswana,1,Cluster 2,0
+CAF,Central African Republic,1,Cluster 2,0
+CAN,Canada,0,Cluster 1,1
+CHE,Switzerland,0,Cluster 1,1
+CHL,Chile,1,Cluster 2,1
+CHN,China,0,Cluster 1,0
+CIV,Côte d'Ivoire,0,Cluster 1,0
+CMR,Cameroon,0,Cluster 1,0
+COD,Democratic Republic of the Congo,0,Cluster 1,0
+COG,Congo,0,Cluster 1,0
+COK,Cook Islands,1,Cluster 2,0
+COL,Colombia,1,Cluster 2,0
+COM,Comoros,1,Cluster 2,0
+CPV,Cabo Verde,0,Cluster 1,0
+CRI,Costa Rica,1,Cluster 2,1
+CUB,Cuba,1,Cluster 2,0
+CYP,Cyprus,0,Cluster 1,1
+CZE,Czechia,0,Cluster 1,1
+DEU,Germany,0,Cluster 1,1
+DJI,Djibouti,1,Cluster 2,0
+DMA,Dominica,1,Cluster 2,0
+DNK,Denmark,0,Cluster 1,1
+DOM,Dominican Republic,1,Cluster 2,0
+DZA,Algeria,1,Cluster 2,0
+ECU,Ecuador,1,Cluster 2,0
+EGY,Egypt,1,Cluster 2,0
+ERI,Eritrea,0,Cluster 1,0
+ESP,Spain,0,Cluster 1,1
+EST,Estonia,1,Cluster 2,1
+ETH,Ethiopia,0,Cluster 1,0
+FIN,Finland,0,Cluster 1,1
+FJI,Fiji,1,Cluster 2,0
+FRA,France,0,Cluster 1,1
+FSM,Micronesia (Federated States of),0,Cluster 1,0
+GAB,Gabon,0,Cluster 1,0
+GBR,United Kingdom of Great Britain and Northern Ireland,0,Cluster 1,1
+GEO,Georgia,2,Cluster 3,0
+GHA,Ghana,0,Cluster 1,0
+GIN,Guinea,1,Cluster 2,0
+GMB,Gambia,1,Cluster 2,0
+GNB,Guinea-Bissau,1,Cluster 2,0
+GNQ,Equatorial Guinea,0,Cluster 1,0
+GRC,Greece,0,Cluster 1,1
+GRD,Grenada,1,Cluster 2,0
+GTM,Guatemala,1,Cluster 2,0
+GUY,Guyana,1,Cluster 2,1
+HND,Honduras,1,Cluster 2,0
+HRV,Croatia,0,Cluster 1,1
+HTI,Haiti,1,Cluster 2,0
+HUN,Hungary,1,Cluster 2,1
+IDN,Indonesia,0,Cluster 1,0
+IND,India,0,Cluster 1,0
+IRL,Ireland,0,Cluster 1,1
+IRN,Iran (Islamic Republic of),1,Cluster 2,0
+IRQ,Iraq,0,Cluster 1,0
+ISL,Iceland,0,Cluster 1,1
+ISR,Israel,1,Cluster 2,1
+ITA,Italy,0,Cluster 1,1
+JAM,Jamaica,1,Cluster 2,0
+JOR,Jordan,1,Cluster 2,0
+JPN,Japan,0,Cluster 1,1
+KAZ,Kazakhstan,0,Cluster 1,0
+KEN,Kenya,0,Cluster 1,0
+KGZ,Kyrgyzstan,2,Cluster 3,0
+KHM,Cambodia,0,Cluster 1,0
+KIR,Kiribati,1,Cluster 2,0
+KNA,Saint Kitts and Nevis,1,Cluster 2,1
+KOR,Republic of Korea,1,Cluster 2,1
+KWT,Kuwait,1,Cluster 2,1
+LAO,Lao People's Democratic Republic,0,Cluster 1,0
+LBN,Lebanon,2,Cluster 3,0
+LBR,Liberia,2,Cluster 3,0
+LBY,Libya,0,Cluster 1,0
+LCA,Saint Lucia,0,Cluster 1,0
+LKA,Sri Lanka,0,Cluster 1,0
+LSO,Lesotho,1,Cluster 2,0
+LTU,Lithuania,0,Cluster 1,1
+LUX,Luxembourg,1,Cluster 2,1
+LVA,Latvia,1,Cluster 2,1
+MAR,Morocco,1,Cluster 2,0
+MCO,Monaco,0,Cluster 1,1
+MDA,Republic of Moldova,0,Cluster 1,0
+MDG,Madagascar,2,Cluster 3,0
+MDV,Maldives,1,Cluster 2,0
+MEX,Mexico,1,Cluster 2,0
+MHL,Marshall Islands,1,Cluster 2,0
+MKD,North Macedonia,0,Cluster 1,0
+MLI,Mali,0,Cluster 1,0
+MLT,Malta,0,Cluster 1,1
+MMR,Myanmar,2,Cluster 3,0
+MNE,Montenegro,0,Cluster 1,0
+MNG,Mongolia,0,Cluster 1,0
+MOZ,Mozambique,1,Cluster 2,0
+MRT,Mauritania,0,Cluster 1,0
+MWI,Malawi,1,Cluster 2,0
+MYS,Malaysia,2,Cluster 3,0
+NAM,Namibia,0,Cluster 1,0
+NER,Niger,0,Cluster 1,0
+NGA,Nigeria,0,Cluster 1,0
+NIC,Nicaragua,1,Cluster 2,0
+NIU,Niue,1,Cluster 2,0
+NLD,Netherlands (Kingdom of the),0,Cluster 1,1
+NOR,Norway,1,Cluster 2,1
+NPL,Nepal,0,Cluster 1,0
+NRU,Nauru,1,Cluster 2,1
+NZL,New Zealand,0,Cluster 1,1
+OMN,Oman,1,Cluster 2,1
+PAK,Pakistan,0,Cluster 1,0
+PAN,Panama,1,Cluster 2,1
+PER,Peru,1,Cluster 2,0
+PHL,Philippines,2,Cluster 3,0
+PLW,Palau,1,Cluster 2,1
+PNG,Papua New Guinea,2,Cluster 3,0
+POL,Poland,1,Cluster 2,1
+PRK,Democratic People's Republic of Korea,1,Cluster 2,0
+PRT,Portugal,0,Cluster 1,1
+PRY,Paraguay,1,Cluster 2,0
+QAT,Qatar,0,Cluster 1,1
+ROU,Romania,2,Cluster 3,1
+RUS,Russian Federation,0,Cluster 1,1
+RWA,Rwanda,1,Cluster 2,0
+SAU,Saudi Arabia,0,Cluster 1,1
+SDN,Sudan,0,Cluster 1,0
+SEN,Senegal,0,Cluster 1,0
+SGP,Singapore,1,Cluster 2,1
+SLB,Solomon Islands,1,Cluster 2,0
+SLE,Sierra Leone,0,Cluster 1,0
+SLV,El Salvador,1,Cluster 2,0
+SMR,San Marino,0,Cluster 1,1
+SOM,Somalia,2,Cluster 3,0
+SRB,Serbia,2,Cluster 3,0
+SSD,,0,Cluster 1,0
+SSD,South Sudan,0,Cluster 1,0
+STP,Sao Tome and Principe,1,Cluster 2,0
+SUR,Suriname,1,Cluster 2,0
+SVK,Slovakia,0,Cluster 1,1
+SVN,Slovenia,0,Cluster 1,1
+SWE,Sweden,0,Cluster 1,1
+SWZ,Eswatini,1,Cluster 2,0
+SYC,Seychelles,0,Cluster 1,1
+SYR,Syrian Arab Republic,0,Cluster 1,0
+TCD,Chad,0,Cluster 1,0
+TGO,Togo,0,Cluster 1,0
+THA,Thailand,0,Cluster 1,0
+TJK,Tajikistan,1,Cluster 2,0
+TKM,Turkmenistan,1,Cluster 2,0
+TLS,Timor-Leste,0,Cluster 1,0
+TON,Tonga,0,Cluster 1,0
+TTO,Trinidad and Tobago,1,Cluster 2,1
+TUN,Tunisia,0,Cluster 1,0
+TUR,Türkiye,1,Cluster 2,0
+TUV,Tuvalu,1,Cluster 2,0
+TZA,United Republic of Tanzania,0,Cluster 1,0
+UGA,Uganda,0,Cluster 1,0
+UKR,Ukraine,2,Cluster 3,0
+URY,Uruguay,1,Cluster 2,1
+USA,United States of America,0,Cluster 1,1
+UZB,Uzbekistan,0,Cluster 1,0
+VCT,Saint Vincent and the Grenadines,1,Cluster 2,0
+VEN,Venezuela (Bolivarian Republic of),0,Cluster 1,0
+VNM,Viet Nam,2,Cluster 3,0
+VUT,Vanuatu,1,Cluster 2,0
+WSM,Samoa,0,Cluster 1,0
+YEM,Yemen,1,Cluster 2,0
+ZAF,South Africa,1,Cluster 2,0
+ZMB,Zambia,1,Cluster 2,0
+ZWE,Zimbabwe,1,Cluster 2,0

@@ -41,10 +41,60 @@ def _select_pca_covariates(correlation_df, incidence_col):
     return X
 
 
+def standardize_data(X, impute_strategy="mean"):
+    """
+    Standardize data for PCA analysis.
+    
+    This function performs two critical preprocessing steps:
+    1. Imputation: Handles missing values (required before standardization)
+    2. Standardization: Z-score normalization (mean=0, std=1)
+    
+    Why standardization is essential for PCA:
+    - PCA is sensitive to the scale of variables
+    - Variables with larger scales/variance will dominate the principal components
+    - Standardization ensures all variables contribute equally to the analysis
+    - Without standardization, PCA results would be biased toward variables with larger scales
+    
+    Parameters:
+    -----------
+    X : array-like or DataFrame
+        Input data with potential missing values
+    impute_strategy : str, default="mean"
+        Strategy for imputation ('mean', 'median', 'most_frequent', 'constant')
+    
+    Returns:
+    --------
+    X_scaled : ndarray
+        Standardized data ready for PCA (mean=0, std=1 for each variable)
+    imputer : SimpleImputer
+        Fitted imputer (for potential inverse transformation)
+    scaler : StandardScaler
+        Fitted scaler (for potential inverse transformation)
+    """
+    # Step 1: Handle missing values
+    imputer = SimpleImputer(strategy=impute_strategy)
+    X_imputed = imputer.fit_transform(X)
+    
+    # Step 2: Standardize (z-score normalization)
+    # This transforms each variable to have mean=0 and std=1
+    # Formula: z = (x - mean) / std
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X_imputed)
+    
+    return X_scaled, imputer, scaler
+
+
 def run_pca_regression(correlation_df, incidence_col, n_components=3, use_both_coverage=True):
     """
     Run PCA on socioeconomic covariates with imputation and fit a regression model
     predicting measles incidence using vaccine coverage + PCs. Saves no files (used within the loop).
+    
+    Preprocessing pipeline:
+    1. Select relevant covariates (exclude identifiers, incidence, coverage)
+    2. Impute missing values
+    3. Standardize data (z-score normalization) - CRITICAL for PCA
+    4. Apply PCA to standardized data
+    5. Fit regression model with coverage + PCs
     
     Args:
         correlation_df: DataFrame with covariates and incidence data
@@ -52,17 +102,29 @@ def run_pca_regression(correlation_df, incidence_col, n_components=3, use_both_c
         n_components: Number of principal components to compute
         use_both_coverage: If True, include both 1st and 2nd coverage in the formula (if available)
     """
-    # 1) PCA on covariates only
+    # 1) Select covariates for PCA
     X = _select_pca_covariates(correlation_df, incidence_col)
+    print(f"\nSelected {X.shape[1]} covariates for PCA: {list(X.columns)}")
 
-    imputer = SimpleImputer(strategy="mean")
-    X_imputed = imputer.fit_transform(X)
+    # 2) Preprocess data: impute missing values and standardize
+    # Standardization is ESSENTIAL before PCA to ensure all variables contribute equally
+    print("\nPreprocessing data for PCA:")
+    print("  - Step 1: Imputing missing values...")
+    print("  - Step 2: Standardizing data (z-score normalization)...")
+    X_scaled, imputer, scaler = standardize_data(X, impute_strategy="mean")
+    print(f"  - Data shape after preprocessing: {X_scaled.shape}")
+    print(f"  - Standardized data statistics:")
+    print(f"    Mean: {X_scaled.mean(axis=0).round(3)} (should be ~0)")
+    print(f"    Std: {X_scaled.std(axis=0).round(3)} (should be ~1)")
 
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X_imputed)
-
+    # 3) Apply PCA to standardized data
+    print(f"\nApplying PCA with {n_components} components...")
     pca = PCA(n_components=n_components)
     components = pca.fit_transform(X_scaled)
+    
+    # Print explained variance
+    print(f"Explained variance ratio: {pca.explained_variance_ratio_}")
+    print(f"Total explained variance: {pca.explained_variance_ratio_.sum():.3f}")
 
     for i in range(n_components):
         correlation_df[f"PC{i+1}"] = components[:, i]
@@ -77,7 +139,8 @@ def run_pca_regression(correlation_df, incidence_col, n_components=3, use_both_c
         print(f"Warning: Mismatch between PCA features ({n_features}) and X.columns ({n_cols})")
         print(f"  This may occur if some covariates are constant or have insufficient variation.")
         # Check for constant columns after imputation
-        X_imputed_df = pd.DataFrame(X_imputed, columns=X.columns, index=X.index)
+        X_imputed_reconstructed = imputer.transform(X)
+        X_imputed_df = pd.DataFrame(X_imputed_reconstructed, columns=X.columns, index=X.index)
         constant_cols = []
         for col in X.columns:
             if X_imputed_df[col].nunique() <= 1:

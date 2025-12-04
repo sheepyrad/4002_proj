@@ -25,9 +25,10 @@ import re
 DATA_DIR = Path(__file__).parent.parent.parent / 'data'
 RESULTS_DIR = Path(__file__).parent.parent.parent / 'results' / 'causal_analysis'
 
-# Maximum year to include in analysis
-# 2024 excluded: PolStability, HealthExpPC, BirthRate have 100% missing
-# 2023 excluded for HealthExpPC: 89.8% missing
+# Year range for analysis
+# 2024+ excluded: PolStability, HealthExpPC, BirthRate have 100% missing
+# 2012-2014 excluded: Earlier years have sparser data and different reporting standards
+MIN_ANALYSIS_YEAR = 2015
 MAX_ANALYSIS_YEAR = 2023
 
 # KNN imputation parameters
@@ -42,7 +43,7 @@ def load_panel_data(filter_year=True):
     Parameters:
     -----------
     filter_year : bool
-        If True, exclude years beyond MAX_ANALYSIS_YEAR (2025 has 100% missing data)
+        If True, filter to years between MIN_ANALYSIS_YEAR and MAX_ANALYSIS_YEAR
     """
     data_path = Path(__file__).parent.parent.parent / 'results' / 'mixed_effects_analysis' / 'panel_data.csv'
     df = pd.read_csv(data_path)
@@ -50,10 +51,10 @@ def load_panel_data(filter_year=True):
     if filter_year:
         original_years = df['Year'].nunique()
         original_rows = len(df)
-        df = df[df['Year'] <= MAX_ANALYSIS_YEAR]
+        df = df[(df['Year'] >= MIN_ANALYSIS_YEAR) & (df['Year'] <= MAX_ANALYSIS_YEAR)]
         filtered_years = df['Year'].nunique()
         filtered_rows = len(df)
-        print(f"\n[DATA FILTER] Excluded years > {MAX_ANALYSIS_YEAR}")
+        print(f"\n[DATA FILTER] Restricted to years {MIN_ANALYSIS_YEAR}-{MAX_ANALYSIS_YEAR}")
         print(f"  Years: {original_years} -> {filtered_years} (removed {original_years - filtered_years})")
         print(f"  Rows: {original_rows} -> {filtered_rows} (removed {original_rows - filtered_rows})")
     

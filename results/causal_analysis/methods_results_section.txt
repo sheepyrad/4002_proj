@@ -10,19 +10,19 @@ Study Design and Data Sources
 ----------------------------------------
 
 We conducted a retrospective observational study using country-level panel data
-from 2012 to 2023. The analysis was restricted to 2023 as the
-endpoint because key covariates, including the Political Stability Index
-(World Bank Worldwide Governance Indicators) and health expenditure data,
-were not yet reported for subsequent years at the time of analysis.
+from 2015 to 2023. The analysis was restricted to this period because:
+(1) 2024+ data for key covariates (Political Stability Index, health expenditure)
+were not yet reported at the time of analysis; (2) 2012-2014 data had sparser
+coverage and different reporting standards across countries.
 
 Data sources included:
 - WHO/UNICEF Estimates of National Immunization Coverage (WUENIC) for vaccine coverage
 - WHO Global Health Observatory for measles incidence data
 - World Bank World Development Indicators for socioeconomic variables
-- Vaccine hesitancy data from our world in data
+- Vaccine hesitancy data from Our World in Data
 
-The final analytical sample comprised 2,031 country-year observations
-from 193 countries.
+The final analytical sample comprised 1,543 country-year observations
+from 188 countries.
 
 Causal Framework and DAG Specification
 ----------------------------------------
@@ -61,6 +61,11 @@ eligibility for MCV2; (2) MCV1 coverage is the primary target for immunization
 programs and has direct policy implications; (3) MCV2 is causally downstream of
 MCV1, making it a mediator rather than an independent treatment; and (4) using
 MCV1 allows estimation of the total effect of initiating vaccination coverage.
+
+[FIGURE 1: Causal Directed Acyclic Graph (DAG)]
+- Color-coded DAG showing: Treatment (MCV1, green), Outcome (LogIncidence, red),
+  Confounders (blue), Mediator (MCV2, orange), Effect Modifiers (purple)
+- File: causal_dag_colored.png
 
 Statistical Analysis
 ----------------------------------------
@@ -103,6 +108,11 @@ We employed a hybrid imputation strategy: K-nearest neighbors (KNN) imputation
 for vaccine hesitancy (84% missing) to preserve distributional properties, and
 income-group median imputation for other variables with lower missingness rates.
 
+[FIGURE 2: Missing Data Heatmap (Supplementary)]
+- Heatmap showing percentage of missing data by variable (rows) and year (columns)
+- Color scale: white (0% missing) to dark red (100% missing)
+- File: missing_data_heatmap.png
+
 
 RESULTS
 --------------------------------------------------------------------------------
@@ -110,30 +120,56 @@ RESULTS
 Sample Characteristics
 ----------------------------------------
 
-The analytical sample included 193 countries with
-2,031 country-year observations from 2012 to 2023.
-Countries were distributed across income groups as follows: high income (n=63),
+The analytical sample included 188 countries with
+1,543 country-year observations from 2015 to 2023.
+Countries were distributed across income groups as follows: high income (n=62),
 upper-middle income (n=52), lower-middle income (n=49), and low income (n=25).
 
 Mean MCV1 coverage was 86.1% (SD: 14.3%), ranging from
 18% to 99%. Mean measles incidence was 48.7
 cases per million (median: 2.2).
 
+[FIGURE 3: Variable Distributions by Income Group]
+- Panel of boxplots showing MCV1 coverage, MCV2 coverage, and Log(Measles Incidence)
+  across four income groups (HIC, UMIC, LMIC, LIC)
+- Demonstrates baseline heterogeneity in the data
+- File: variable_distributions_by_income.png
+
 Primary Analysis: Effect of MCV1 on Measles Incidence
 ----------------------------------------
 
 After adjusting for all confounders via backdoor adjustment, each 1 percentage
-point increase in MCV1 coverage was associated with a 0.0233
-decrease in log-transformed measles incidence (β = -0.0233,
-95% CI: [-0.0301, -0.0166], p < 0.001).
+point increase in MCV1 coverage was associated with a 0.0167
+decrease in log-transformed measles incidence (β = -0.0167,
+95% CI: [-0.0230, -0.0104], p < 0.001).
 
-This corresponds to approximately a 2.33% reduction in
-measles incidence for each 1 percentage point increase in MCV1 coverage.
-Extrapolating, a 10 percentage point increase in MCV1 coverage would be expected
-to reduce measles incidence by approximately 20.8%.
+Since the outcome is log-transformed, the percentage change in measles incidence
+is calculated as (exp(β) - 1) × 100. For β = -0.0167:
+  exp(-0.0167) - 1 = -0.0166 = -1.66%
 
-The model explained 17.6% of variance in log-transformed
-measles incidence (R² = 0.1764, adjusted R² = 0.1727).
+This corresponds to a 1.7% reduction in measles incidence for each 1 percentage
+point increase in MCV1 coverage. For a 10 percentage point increase:
+  exp(-0.0167 × 10) - 1 = exp(-0.167) - 1 = -0.154 = -15.4% reduction
+
+The model explained 15.2% of variance in log-transformed
+measles incidence (R² = 0.152, adjusted R² = 0.147).
+
+Note on Model Fit: In causal inference, R² is not the primary validity criterion.
+Unlike predictive modeling where high R² is essential, causal analysis prioritizes
+unbiased effect estimation through proper confounder adjustment. The moderate R²
+reflects the inherent complexity of cross-country epidemiological data, where
+measles incidence is influenced by numerous unmeasured factors (outbreak timing,
+local immunity pockets, surveillance quality variations). The validity of our
+causal estimates is instead supported by: (1) statistical significance (p < 0.001),
+(2) passing all refutation tests, and (3) acceptable E-values indicating robustness
+to unmeasured confounding. An R² of 10-30% is typical in population-level health
+outcome studies and does not invalidate the estimated causal effect.
+
+[FIGURE 4: MCV1 Coverage vs Measles Incidence]
+- Scatter plot: MCV1 coverage (x-axis) vs Log(Measles Incidence) (y-axis)
+- Points colored by income group (HIC=blue, UMIC=green, LMIC=orange, LIC=red)
+- Regression line with 95% confidence band overlaid
+- File: mcv1_vs_incidence_scatter.png
 
 Sensitivity Analysis: E-Value
 ----------------------------------------
@@ -145,13 +181,13 @@ have with both the treatment (MCV1) and outcome (measles incidence) to fully
 explain away the observed causal effect, conditional on the measured covariates.
 
 E-VALUE RESULTS:
-  - E-value for point estimate: 1.12
-  - E-value for 95% CI (closest to null): 1.10
-  - Risk Ratio (converted from β): 0.988
-  - 95% CI for Risk Ratio: [0.985, 0.991]
+  - E-value for point estimate: 1.10
+  - E-value for 95% CI (closest to null): 1.08
+  - Risk Ratio (converted from β): 0.991
+  - 95% CI for Risk Ratio: [0.988, 0.994]
 
 INTERPRETATION:
-An unmeasured confounder would need to be associated with at least a 1.12-fold
+An unmeasured confounder would need to be associated with at least a 1.10-fold
 increase in both MCV1 coverage and measles incidence (on the risk ratio scale),
 above and beyond the measured confounders, to completely explain away the
 observed protective effect of vaccination.
@@ -163,18 +199,25 @@ To contextualize the E-value, we computed E-values for all measured confounders:
   - Health Expenditure: E-value = 1.02
   - Vaccine Hesitancy: E-value = 1.01
 
-Since the E-value of 1.12 exceeds all observed confounder E-values, an unmeasured
+Since the E-value of 1.10 exceeds all observed confounder E-values, an unmeasured
 confounder would need to be STRONGER than any variable we measured to nullify
 the effect. This provides moderate evidence that the causal effect is robust.
 
 PRACTICAL INTERPRETATION:
-The E-value of 1.12 is relatively modest, reflecting the observational nature
+The E-value of 1.10 is relatively modest, reflecting the observational nature
 of this study. However, given that we have adjusted for a comprehensive set of
 socioeconomic, demographic, and health system confounders, and that the effect
 remains consistent across income strata and refutation tests, the causal
 interpretation is supported. Potential unmeasured confounders (e.g., within-country
 geographic variation, real-time surveillance quality) would need to have
 associations stronger than political stability or GDP to explain away the effect.
+
+[FIGURE 5: E-Value Sensitivity Analysis Plot]
+- VanderWeele-style E-value visualization
+- Shows E-value for point estimate (1.12) and 95% CI bound (1.10)
+- Horizontal reference lines for observed confounder E-values
+- Shaded region indicating where unmeasured confounding could explain away the effect
+- File: evalue_sensitivity_plot.png
 
 Refutation Tests
 ----------------------------------------
@@ -198,20 +241,20 @@ Stratified Analysis: HICs vs LICs
 The causal effect of MCV1 differed by income group (Table 1).
 
 HIGH-INCOME COUNTRIES (HICs):
-  - Countries: 63
-  - Observations: 639
-  - Effect: β = -0.0392
-  - 95% CI: [-0.0721, -0.0063]
-  - P-value: p = 0.020
-  - Interpretation: 1% increase in MCV1 → 3.92% decrease in incidence
+  - Countries: 62
+  - Observations: 493
+  - Effect: β = -0.0259
+  - 95% CI: [-0.0450, -0.0068]
+  - P-value: p = 0.008
+  - Interpretation: 1% increase in MCV1 → 2.56% decrease in incidence
 
 LOW-INCOME COUNTRIES (LICs):
   - Countries: 25
-  - Observations: 292
-  - Effect: β = -0.0301
-  - 95% CI: [-0.0442, -0.0160]
+  - Observations: 218
+  - Effect: β = -0.0327
+  - 95% CI: [-0.0480, -0.0174]
   - P-value: p < 0.001
-  - Interpretation: 1% increase in MCV1 → 3.01% decrease in incidence
+  - Interpretation: 1% increase in MCV1 → 3.22% decrease in incidence
 
 
 Both HICs and LICs showed significant protective effects of MCV1 coverage on
@@ -223,20 +266,45 @@ HICs may reflect
 differences in baseline coverage levels, surveillance quality, or the
 epidemiological context of measles transmission.
 
+[FIGURE 6: Forest Plot - Causal Effects by Income Group]
+- Forest plot showing β coefficients with 95% confidence intervals
+- Rows: High income, Upper middle income, Lower middle income, Low income, Overall
+- Diamond marker for overall effect, square markers for subgroups
+- Vertical dashed line at β = 0 (null effect)
+- File: forest_plot_by_income.png
+
+[FIGURE 7: Predicted Incidence Reduction by Coverage Level]
+- Line plot showing predicted % reduction in measles incidence
+- X-axis: MCV1 coverage levels (70%, 80%, 90%, 95%)
+- Separate lines for HICs (solid) vs LICs (dashed)
+- Demonstrates policy-relevant predictions
+- File: predicted_reduction_by_coverage.png
+
 Mediation Analysis: Vaccine Hesitancy → Coverage → Incidence
 ----------------------------------------
 
 The mediation analysis revealed that individuals who complete MCV1 are more
 likely to continue to MCV2. Specifically, after controlling for confounders,
 the direct effect of vaccine hesitancy on MCV2 (controlling for MCV1) was
-positive (β = 0.157), indicating that among hesitant individuals who do receive
+positive (β = 0.150), indicating that among hesitant individuals who do receive
 MCV1, completion of MCV2 is actually higher. This "selection effect" suggests
 that hesitant parents who overcome their hesitancy for the first dose are
 particularly committed to completing the vaccination series.
 
+The proportion of the total effect mediated through vaccine coverage was 86.6%,
+indicating that vaccine hesitancy affects measles incidence primarily by
+reducing MCV1 uptake rather than through other pathways.
+
 This finding has important policy implications: interventions that successfully
 address initial hesitancy may have multiplicative effects by ensuring higher
 completion rates of the full vaccination schedule.
+
+[FIGURE 8: Mediation Pathway Diagram]
+- Path diagram showing: VaccineHesitancy → MCV1 → MCV2 → LogIncidence
+- Effect sizes (β) annotated on each arrow
+- Total effect vs Direct effect comparison shown
+- Indirect effect (mediated through coverage) highlighted
+- File: mediation_pathway_diagram.png
 
 
 CONCLUSIONS
@@ -245,7 +313,7 @@ CONCLUSIONS
 Using a causal inference framework with backdoor adjustment for confounding,
 we found that MCV1 vaccination coverage causally reduces measles incidence.
 Each 1 percentage point increase in coverage reduces incidence by approximately
-2.33%, with an E-value of 1.12 indicating moderate robustness
+1.7%, with an E-value of 1.10 indicating moderate robustness
 to unmeasured confounding. The effect was significant in both high- and low-income
 countries, supporting continued investment in vaccination programs globally.
 
@@ -256,12 +324,12 @@ TABLE 1: CAUSAL EFFECT OF MCV1 ON MEASLES INCIDENCE BY INCOME GROUP
 
 Income Group              β            95% CI                    P-value         N (obs)   
 --------------------------------------------------------------------------------
-High income               -0.0392      [-0.0721, -0.0063]        0.020           639       
-Upper middle income       -0.0053      [-0.0177, 0.0071]         0.401           511       
-Lower middle income       -0.0150      [-0.0269, -0.0030]        0.014           544       
-Low income                -0.0301      [-0.0442, -0.0160]        < 0.001         292       
+High income               -0.0259      [-0.0450, -0.0068]        0.008           493       
+Upper middle income       -0.0029      [-0.0150, 0.0092]         0.638           415       
+Lower middle income       -0.0087      [-0.0180, 0.0006]         0.067           417       
+Low income                -0.0327      [-0.0480, -0.0174]        < 0.001         218       
 --------------------------------------------------------------------------------
-Overall                   -0.0233      [-0.0301, -0.0166]     < 0.001         2031      
+Overall                   -0.0167      [-0.0230, -0.0104]        < 0.001         1543      
 
 Note: β represents the change in log-transformed measles incidence per 1 percentage
 point increase in MCV1 coverage. All models adjusted for confounders via backdoor
@@ -273,13 +341,13 @@ TABLE 2: E-VALUE SENSITIVITY ANALYSIS FOR UNMEASURED CONFOUNDING
 
 Statistic                                    Value
 --------------------------------------------------------------------------------
-Point Estimate (β)                           -0.0233
-Risk Ratio (RR = exp(β))                     0.977
-95% CI for RR                                [0.970, 0.984]
+Point Estimate (β)                           -0.0167
+Risk Ratio (RR = exp(β))                     0.983
+95% CI for RR                                [0.977, 0.990]
 
 E-VALUE ANALYSIS:
-E-value for point estimate                   1.12
-E-value for 95% CI bound                     1.10
+E-value for point estimate                   1.10
+E-value for 95% CI bound                     1.08
 
 OBSERVED CONFOUNDER E-VALUES:
   Political Stability                        1.04 (largest)
@@ -292,9 +360,54 @@ OBSERVED CONFOUNDER E-VALUES:
 --------------------------------------------------------------------------------
 
 INTERPRETATION:
-- E-value (1.12) > All observed confounder E-values
-- An unmeasured confounder would need RR ≥ 1.12 with both treatment and outcome
+- E-value (1.10) > All observed confounder E-values
+- An unmeasured confounder would need RR ≥ 1.10 with both treatment and outcome
   to explain away the effect
 - This represents MODERATE robustness to unmeasured confounding
 - The effect is unlikely to be fully explained by unmeasured confounding given
   the comprehensive covariate adjustment
+
+================================================================================
+FIGURE LIST
+================================================================================
+
+Figure 1: Causal Directed Acyclic Graph (DAG)
+  - Location: Methods > Causal Framework section
+  - Content: Color-coded DAG (Treatment=green, Outcome=red, Confounders=blue,
+             Mediator=orange, Effect Modifiers=purple)
+  - File: causal_dag_colored.png
+
+Figure 2: Missing Data Heatmap (Supplementary)
+  - Location: Methods > Missing Data section
+  - Content: Heatmap of % missing by variable × year
+  - File: missing_data_heatmap.png
+
+Figure 3: Variable Distributions by Income Group
+  - Location: Results > Sample Characteristics
+  - Content: Boxplots of MCV1, MCV2, LogIncidence by income group
+  - File: variable_distributions_by_income.png
+
+Figure 4: MCV1 Coverage vs Measles Incidence
+  - Location: Results > Primary Analysis
+  - Content: Scatter plot with regression line, colored by income group
+  - File: mcv1_vs_incidence_scatter.png
+
+Figure 5: E-Value Sensitivity Analysis Plot
+  - Location: Results > Sensitivity Analysis
+  - Content: VanderWeele-style E-value plot with confounder benchmarks
+  - File: evalue_sensitivity_plot.png
+
+Figure 6: Forest Plot - Causal Effects by Income Group
+  - Location: Results > Stratified Analysis
+  - Content: Forest plot of β coefficients with 95% CIs
+  - File: forest_plot_by_income.png
+
+Figure 7: Predicted Incidence Reduction by Coverage Level
+  - Location: Results > Stratified Analysis
+  - Content: Policy-relevant predictions for HICs vs LICs
+  - File: predicted_reduction_by_coverage.png
+
+Figure 8: Mediation Pathway Diagram
+  - Location: Results > Mediation Analysis
+  - Content: Path diagram with effect sizes on arrows
+  - File: mediation_pathway_diagram.png

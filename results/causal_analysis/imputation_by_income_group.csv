@@ -1,5 +1,5 @@
 Income_Group,N_Countries,Total_Observations,Total_Imputed_Values,GDPpc_Imputed,HealthExpPC_Imputed,PolStability_Imputed,BirthRate_Imputed,PopDensity_Imputed,MCV1_Imputed,MCV2_Imputed,NetMigration_Imputed,UrbanPop_Imputed,HouseholdSize_Imputed,VaccineHesitancy_Imputed
-High income,63,639,701,1,36,0,0,0,0,8,0,0,158,498
-Upper middle income,52,511,572,10,48,0,0,0,0,26,0,0,54,434
-Lower middle income,49,544,767,1,46,0,0,0,14,141,12,0,72,481
-Low income,25,292,507,48,42,0,0,0,4,121,0,0,38,254
+High income,62,493,509,0,36,0,0,0,0,1,0,0,120,352
+Upper middle income,52,415,457,9,48,0,0,0,0,19,0,0,43,338
+Lower middle income,49,417,557,0,46,0,0,0,12,82,9,0,54,354
+Low income,25,218,348,36,35,0,0,0,3,67,0,0,27,180

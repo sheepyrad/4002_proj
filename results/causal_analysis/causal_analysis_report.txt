@@ -10,26 +10,26 @@ MCV1 ANALYSIS
 
 Treatment: MCV1
 Outcome: LogIncidence
-Observations: 1984
-Countries: 189
+Observations: 1543
+Countries: 188
 
 ESTIMATES:
 ----------------------------------------
-  linear_regression: -0.0214
-  propensity_stratification: -0.4055
-  propensity_matching: -0.3610
+  linear_regression: -0.0167
+  propensity_stratification: -0.0675
+  propensity_matching: -0.1559
 
-PRIMARY ESTIMATE: -0.0214
+PRIMARY ESTIMATE: -0.0167
 
 INTERPRETATION:
-A 1 percentage point increase in MCV1 coverage decreases measles incidence by approximately 2.12%.
-A 10 percentage point increase in coverage would decreases incidence by approximately 19.3%.
+A 1 percentage point increase in MCV1 coverage decreases measles incidence by approximately 1.66%.
+A 10 percentage point increase in coverage would decreases incidence by approximately 15.4%.
 
 ROBUSTNESS CHECKS:
 ----------------------------------------
-  random_common_cause: -0.0214
-  placebo_treatment: -0.0001
-  data_subset: -0.0213
+  random_common_cause: -0.0167
+  placebo_treatment: -0.0003
+  data_subset: -0.0165
 
 ==================================================
 MCV2 ANALYSIS
@@ -37,23 +37,23 @@ MCV2 ANALYSIS
 
 Treatment: MCV2
 Outcome: LogIncidence
-Observations: 1984
-Countries: 189
+Observations: 1543
+Countries: 188
 
 ESTIMATES:
 ----------------------------------------
-  linear_regression: -0.0034
+  linear_regression: -0.0039
 
-PRIMARY ESTIMATE: -0.0034
+PRIMARY ESTIMATE: -0.0039
 
 INTERPRETATION:
-A 1 percentage point increase in MCV2 coverage decreases measles incidence by approximately 0.34%.
-A 10 percentage point increase in coverage would decreases incidence by approximately 3.4%.
+A 1 percentage point increase in MCV2 coverage decreases measles incidence by approximately 0.39%.
+A 10 percentage point increase in coverage would decreases incidence by approximately 3.8%.
 
 ROBUSTNESS CHECKS:
 ----------------------------------------
-  random_common_cause: -0.0034
-  placebo_treatment: -0.0002
+  random_common_cause: -0.0039
+  placebo_treatment: 0.0001
 
 
 ==================================================
@@ -62,23 +62,23 @@ VACCINE HESITANCY AS TREATMENT
 
 Treatment: VaccineHesitancy
 Outcome: LogIncidence
-Observations: 1984
-Countries: 189
+Observations: 1543
+Countries: 188
 
 ESTIMATES:
 ----------------------------------------
-  linear_regression: 0.0073
+  linear_regression: 0.0100
 
-PRIMARY ESTIMATE: 0.0073
+PRIMARY ESTIMATE: 0.0100
 
 INTERPRETATION:
-A 1 percentage point increase in vaccine hesitancy increases measles incidence by approximately 0.74%.
-POLICY IMPLICATION: Reducing hesitancy by 10 percentage points would decrease incidence by approximately 7.1%.
+A 1 percentage point increase in vaccine hesitancy increases measles incidence by approximately 1.01%.
+POLICY IMPLICATION: Reducing hesitancy by 10 percentage points would decrease incidence by approximately 9.5%.
 
 ROBUSTNESS CHECKS:
 ----------------------------------------
-  random_common_cause: 0.0073
-  placebo_treatment: 0.0006
+  random_common_cause: 0.0100
+  placebo_treatment: -0.0002
 
 
 ==================================================
@@ -86,19 +86,20 @@ MEDIATION ANALYSIS
 Hesitancy → Coverage (MCV1 & MCV2) → Incidence
 ==================================================
 
-Total Effect (Hesitancy → Incidence): -0.0043
-Direct Effect (controlling for MCV1 & MCV2): -0.0090
-Indirect Effect (via coverage): 0.0047
+Total Effect (Hesitancy → Incidence): 0.0031
+Direct Effect (controlling for MCV1 & MCV2): 0.0004
+Indirect Effect (via coverage): 0.0027
 
 Effect of Hesitancy on Coverage:
-  Hesitancy → MCV1: -0.2284
-  Hesitancy → MCV2 (total): -0.0770
-  Hesitancy → MCV2 (direct, controlling for MCV1): 0.1570
+  Hesitancy → MCV1: -0.1830
+  Hesitancy → MCV2 (total): -0.0345
+  Hesitancy → MCV2 (direct, controlling for MCV1): 0.1504
 
-Proportion Mediated: 108.7%
+Proportion Mediated: 86.6%
 
 INTERPRETATION:
-Hesitancy reduces MCV1 uptake by 0.23% per 1% hesitancy.
+Vaccine hesitancy INCREASES measles incidence.
+Hesitancy reduces MCV1 uptake by 0.18% per 1% hesitancy.
 Hesitant people who DO get 1st dose are MORE likely to complete 2nd.
 (Selection effect: those who overcome hesitancy for 1st dose are committed)
 
@@ -110,19 +111,19 @@ STRATIFIED ANALYSIS BY INCOME GROUP
 
 MCV1:
 ----------------------------------------
-  High Income: -0.0311 (63 countries)
-  Upper Middle Income: -0.0039 (52 countries)
-  Lower Middle Income: -0.0155 (49 countries)
-  Low Income: -0.0323 (25 countries)
-  Low & Middle Income (Combined): -0.0185 (126 countries)
+  High Income: -0.0259 (62 countries)
+  Upper Middle Income: -0.0029 (52 countries)
+  Lower Middle Income: -0.0087 (49 countries)
+  Low Income: -0.0327 (25 countries)
+  Low & Middle Income (Combined): -0.0148 (126 countries)
 
 MCV2:
 ----------------------------------------
-  High Income: -0.0061 (63 countries)
-  Upper Middle Income: 0.0060 (52 countries)
-  Lower Middle Income: -0.0013 (49 countries)
-  Low Income: -0.0082 (25 countries)
-  Low & Middle Income (Combined): -0.0000 (126 countries)
+  High Income: -0.0038 (62 countries)
+  Upper Middle Income: 0.0105 (52 countries)
+  Lower Middle Income: -0.0025 (49 countries)
+  Low Income: -0.0156 (25 countries)
+  Low & Middle Income (Combined): -0.0007 (126 countries)
 
 
 ======================================================================

@@ -302,3 +302,4 @@ def create_vaccine_hesitancy_comparison():
 if __name__ == '__main__':
     create_vaccine_hesitancy_comparison()
 
+

@@ -25,8 +25,10 @@ import re
 DATA_DIR = Path(__file__).parent.parent.parent / 'data'
 RESULTS_DIR = Path(__file__).parent.parent.parent / 'results' / 'causal_analysis'
 
-# Maximum year to include in analysis (2025 has 100% missing data)
-MAX_ANALYSIS_YEAR = 2024
+# Maximum year to include in analysis
+# 2024 excluded: PolStability, HealthExpPC, BirthRate have 100% missing
+# 2023 excluded for HealthExpPC: 89.8% missing
+MAX_ANALYSIS_YEAR = 2023
 
 # KNN imputation parameters
 KNN_NEIGHBORS = 5

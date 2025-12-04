@@ -1,0 +1,7 @@
+test,var1,var2,conditioning_set,partial_corr,p_value,observed,expected,consistent
+"MCV1 ⫫ BirthRate | GDP, HIC",MCV1,BirthRate,"LogGDPpc, HIC",-0.29592881922649805,4.9541373523344425e-46,dependent,independent,False
+"MCV1 ⫫ NetMigration | GDP, PolStability",MCV1,NetMigration,"LogGDPpc, PolStability",-0.020677072863547447,0.33059515131720846,independent,independent,True
+"Incidence ⫫ GDP | Coverage, HealthExp",LogIncidence,LogGDPpc,"MCV1, MCV2, LogHealthExpPC",0.15899203674587442,5.1458028801011204e-14,dependent,independent,False
+"Hesitancy ⫫ PolStability | GDP, HIC",VaccineHesitancy,PolStability,"LogGDPpc, HIC",-0.020607799416945946,0.33221819282666665,independent,independent,True
+MCV1 - Incidence unconditional (should be dependent),MCV1,LogIncidence,none,-0.30442194732305855,9.741828783040757e-49,dependent,dependent,True
+Hesitancy - MCV1 unconditional (should be dependent),VaccineHesitancy,MCV1,none,-0.1082739663309419,3.2372607888249e-07,dependent,dependent,True

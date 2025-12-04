@@ -241,9 +241,11 @@ def stratified_mice_imputation(df, n_imputations=5, max_iter=10, random_state=42
                 if var in percentage_vars:
                     max_vals[j] = 100
             
+            # Use deterministic seed based on income group (avoid hash() which is non-deterministic)
+            ig_seed = sum(ord(c) for c in str(ig)) % 100  # Deterministic from string characters
             imputer = IterativeImputer(
                 max_iter=max_iter,
-                random_state=random_state + i * 100 + hash(ig) % 100,
+                random_state=random_state + i * 100 + ig_seed,
                 sample_posterior=True,
                 min_value=min_vals,
                 max_value=max_vals,

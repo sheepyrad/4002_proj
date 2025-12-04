@@ -19,7 +19,7 @@ Data sources included:
 - WHO/UNICEF Estimates of National Immunization Coverage (WUENIC) for vaccine coverage
 - WHO Global Health Observatory for measles incidence data
 - World Bank World Development Indicators for socioeconomic variables
-- Wellcome Global Monitor for vaccine hesitancy data
+- Vaccine hesitancy data from our world in data
 
 The final analytical sample comprised 2,031 country-year observations
 from 193 countries.
